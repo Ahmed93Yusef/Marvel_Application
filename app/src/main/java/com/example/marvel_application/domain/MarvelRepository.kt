@@ -4,7 +4,6 @@ import com.example.marvel_application.model.remote.State
 import com.example.marvel_application.model.remote.network.Api
 import com.example.marvel_application.model.remote.response.baseResponse.MarvelResponse
 import com.example.marvel_application.model.remote.response.characters.Characters
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -17,7 +16,6 @@ class MarvelRepository {
 
     private fun <T> wrapWithFlow(function: suspend () -> Response<T>): Flow<State<T?>> = flow {
         emit(State.Loading)
-        delay(1000)
         try {
             val result = function()
             if (result.isSuccessful) {

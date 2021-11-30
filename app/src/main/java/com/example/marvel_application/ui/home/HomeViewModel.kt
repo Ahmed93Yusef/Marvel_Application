@@ -20,7 +20,6 @@ class HomeViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             repository.getMarvelCharacters().collect {
-                Log.i(TAG, "HomeViewModel: ${it.toData()?.dataCharacters}")
             }
         }
 

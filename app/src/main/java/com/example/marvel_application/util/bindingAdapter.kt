@@ -1,5 +1,6 @@
 package com.example.marvel_application.util
 
+import android.util.Log
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -10,6 +11,7 @@ import com.example.marvel_application.R
 import com.example.marvel_application.model.remote.State
 import com.example.marvel_application.model.remote.response.characters.Thumbnail
 import com.example.marvel_application.ui.base.BaseAdapter
+import com.example.marvel_application.util.Constant.TAG
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideApp
 
 @BindingAdapter(value = ["app:showWhenLoading"])
@@ -51,7 +53,10 @@ fun <T> View.showWhenSearch(state: State<T>?) {
 @BindingAdapter(value = ["app:ImageUrl"])
 fun ImageView.setImageUrl(urls: Thumbnail?) {
     if (urls != null) {
-    val url = "${urls.path}.${urls.extension}"
+        val httpString = urls.path?.subSequence(0,4)
+        val httpPath = urls.path?.subSequence(4,urls.path.length)
+    val url = "${httpString}s${httpPath}.${urls.extension}"
+        Log.i(TAG, "setImageUrl: ${urls.path} -- $httpPath --- $httpPath")
         GlideApp.with(context)
             .load(url)
             .placeholder(R.drawable.progress_animation)

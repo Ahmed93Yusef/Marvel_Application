@@ -33,6 +33,7 @@ abstract class BaseAdapter<T>(
         when (holder) {
             is ItemViewHolder -> {
                 holder.binding.apply {
+                    setVariable(BR.items, current)
                 }
             }
         }

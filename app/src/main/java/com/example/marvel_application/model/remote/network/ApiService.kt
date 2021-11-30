@@ -6,6 +6,6 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface ApiService {
-    @GET("/characters")
+    @GET("/v1/public/characters")
     suspend fun getMarvelCharacters(): Response<MarvelResponse<Characters>?>
 }
