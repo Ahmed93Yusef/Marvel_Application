@@ -1,23 +1,17 @@
-package com.example.marvel_application.model.network
+package com.example.marvel_application.model.remote.network
 
-import com.example.marvel_application.util.Constant
+import com.example.marvel_application.BuildConfig
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
-
 
 object Api {
-
     private fun getClient(): Retrofit {
         val clientInterceptor = OkHttpClient.Builder()
-            .readTimeout(120, TimeUnit.SECONDS)
-            .writeTimeout(120, TimeUnit.SECONDS)
-            .connectTimeout(120, TimeUnit.SECONDS)
-            .addInterceptor(MyInterceptor).build()
+            .addInterceptor(MyInter).build()
 
         return Retrofit.Builder()
-            .baseUrl(Constant.BASE_URL)
+            .baseUrl(BuildConfig.BASE_API_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(clientInterceptor)
             .build()

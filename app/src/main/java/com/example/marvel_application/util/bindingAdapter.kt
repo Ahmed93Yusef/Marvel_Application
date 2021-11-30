@@ -7,7 +7,8 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvel_application.R
-import com.example.marvel_application.model.network.State
+import com.example.marvel_application.model.remote.State
+import com.example.marvel_application.model.remote.response.characters.Thumbnail
 import com.example.marvel_application.ui.base.BaseAdapter
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideApp
 
@@ -48,8 +49,9 @@ fun <T> View.showWhenSearch(state: State<T>?) {
 }
 
 @BindingAdapter(value = ["app:ImageUrl"])
-fun ImageView.setImageUrl(url: String?) {
-    if (url != null) {
+fun ImageView.setImageUrl(urls: Thumbnail?) {
+    if (urls != null) {
+    val url = "${urls.path}.${urls.extension}"
         GlideApp.with(context)
             .load(url)
             .placeholder(R.drawable.progress_animation)

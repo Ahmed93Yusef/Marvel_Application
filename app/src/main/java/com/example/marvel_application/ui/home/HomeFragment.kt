@@ -15,6 +15,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun onStart() {
         super.onStart()
-        viewModel
+        binding.recycleView.adapter = HomeAdapter(emptyList())
     }
 }

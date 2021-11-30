@@ -1,4 +1,4 @@
-package com.example.marvel_application.model.network
+package com.example.marvel_application.model.remote
 
 sealed class State<out T>{
     data class Success<T>(val data:T?): State<T>()

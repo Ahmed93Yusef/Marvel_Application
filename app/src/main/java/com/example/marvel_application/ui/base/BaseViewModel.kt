@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
-import com.example.marvel_application.model.repository.Repository
 import com.example.marvel_application.util.Event
 
 abstract class BaseViewModel : ViewModel() {
@@ -14,5 +13,4 @@ abstract class BaseViewModel : ViewModel() {
     fun navigate(direction: NavDirections) {
         _navigationLiveData.postValue(Event(direction))
     }
-    protected val repository = Repository()
 }

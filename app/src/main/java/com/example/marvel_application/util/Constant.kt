@@ -1,9 +1,9 @@
 package com.example.marvel_application.util
 
 object Constant {
-    const val BASE_URL = "https://api-football-v1.p.rapidapi.com"
-    const val AUTH_NAME_HEADER = "x-rapidapi-key"
-    const val API_TOKEN = "1d346b3041msh66984b1b7bfabb3p1b74f4jsn9a3feeec80ee"
+    const val TIMESTAMP_PARAM = "ts"
+    const val API_KEY_PARAM = "apikey"
+    const val HASH_PARAM = "hash"
     const val TAG = "GREEN_APPLE"
     const val MIN_SCALE_VIEW_PAGER = 0.85f
     const val MIN_ALPHA_VIEW_PAGER = 0.5f
