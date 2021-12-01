@@ -2,6 +2,7 @@ package com.example.marvel_application.domain
 
 import android.util.Log
 import com.example.marvel_application.domain.mapper.CharacterMapper
+import com.example.marvel_application.model.local.dao.MarvelCharactersDao
 import com.example.marvel_application.model.local.dataBase.MarvelDatabase
 import com.example.marvel_application.model.local.entity.CharactersEntity
 import com.example.marvel_application.model.remote.State
@@ -15,10 +16,9 @@ import javax.inject.Inject
 
 class MarvelRepositoryImp @Inject constructor(
     private val apiService: MarvelService,
+    private val mapper: CharacterMapper,
+    private val charactersDao: MarvelCharactersDao
 ) : MarvelRepository {
-
-    private val charactersDao = MarvelDatabase.getInstance.marvelCharactersDao()
-    private val mapper = CharacterMapper()
 
     override fun getMarvelCharacters(): Flow<List<CharactersEntity>?> =
         charactersDao.getCatchCharacters()
