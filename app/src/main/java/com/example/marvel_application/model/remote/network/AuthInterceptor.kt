@@ -8,7 +8,7 @@ import com.example.marvel_application.util.md5
 import okhttp3.Interceptor
 import okhttp3.Response
 
-object AuthInterceptor : Interceptor {
+class AuthInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
 
         val timestamp = System.currentTimeMillis().toString()
