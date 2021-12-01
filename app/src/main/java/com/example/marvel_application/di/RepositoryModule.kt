@@ -1,5 +1,6 @@
 package com.example.marvel_application.di
 
+import android.content.Context
 import com.example.marvel_application.domain.MarvelRepository
 import com.example.marvel_application.domain.MarvelRepositoryImp
 import com.example.marvel_application.domain.mapper.CharacterMapper
@@ -9,6 +10,7 @@ import com.example.marvel_application.model.remote.network.MarvelService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 
 @Module
@@ -30,7 +32,7 @@ object RepositoryModule {
     }
 
     @Provides
-    fun provideMarvelCharactersDao(): MarvelCharactersDao{
-        return MarvelDatabase.getInstance.marvelCharactersDao()
+    fun provideMarvelCharactersDao(@ApplicationContext context: Context): MarvelCharactersDao{
+        return MarvelDatabase.getInstance(context).marvelCharactersDao()
     }
 }

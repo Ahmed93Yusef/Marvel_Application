@@ -14,13 +14,10 @@ abstract class MarvelDatabase: RoomDatabase() {
 
     companion object {
         private const val DB_NAME = "MarvelCatchDatabase"
-        @Volatile private var instance: MarvelDatabase? = null
 
         fun getInstance(context: Context) : MarvelDatabase {
-            return instance ?: synchronized(this) { buildDatabase(context).also { instance = it } }
+            return  synchronized(this) { buildDatabase(context) }
         }
-
-        val getInstance get() = instance!!
 
         private fun buildDatabase(context: Context) : MarvelDatabase {
             return Room.databaseBuilder(context, MarvelDatabase::class.java, DB_NAME).build()

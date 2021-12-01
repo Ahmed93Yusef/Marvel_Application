@@ -7,7 +7,7 @@ import com.example.marvel_application.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>() , HomeInteractionListener{
 
     override val viewModel: HomeViewModel by viewModels()
 
@@ -15,7 +15,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun onStart() {
         super.onStart()
-        val adapter = HomeAdapter(emptyList())
+        val adapter = HomeAdapter(emptyList(), this)
         binding.recycleView.adapter = adapter
+    }
+
+    override fun onClickItem(id: Long) {
+        viewModel.navigate(HomeFragmentDirections.actionHomeFragmentToComicFragment(id))
     }
 }

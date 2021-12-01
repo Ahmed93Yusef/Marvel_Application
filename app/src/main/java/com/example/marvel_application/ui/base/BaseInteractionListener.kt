@@ -1,0 +1,3 @@
+package com.example.marvel_application.ui.base
+
+interface BaseInteractionListener

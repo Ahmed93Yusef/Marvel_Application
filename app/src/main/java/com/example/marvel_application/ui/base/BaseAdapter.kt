@@ -9,12 +9,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvel_application.BR
 import com.example.marvel_application.util.DiffUtilAdapter
-import com.example.marvel_application.util.OnClickListener
 
 
 abstract class BaseAdapter<T>(
     private var items: List<T>,
-    private val listener: OnClickListener? = null,
+    private val listener: BaseInteractionListener? = null,
     private val layoutId: Int,
 ) : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>() {
 
@@ -34,6 +33,7 @@ abstract class BaseAdapter<T>(
             is ItemViewHolder -> {
                 holder.binding.apply {
                     setVariable(BR.items, current)
+                    setVariable(BR.listener, listener)
                 }
             }
         }

@@ -7,5 +7,17 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.marvel_application.ui.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_comicFragment"
+            app:destination="@id/comicFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/comicFragment"
+        android:name="com.example.marvel_application.ui.comic.ComicFragment"
+        android:label="ComicFragment" >
+        <argument
+            android:name="id"
+            app:argType="long" />
+    </fragment>
 </navigation>

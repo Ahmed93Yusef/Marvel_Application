@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.marvel_application.util.observeEvent
 
-
 abstract class BaseFragment<VDB : ViewDataBinding> : Fragment() {
 
     abstract val layoutResId: Int

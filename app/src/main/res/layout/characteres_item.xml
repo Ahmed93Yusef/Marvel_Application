@@ -8,11 +8,17 @@
         <variable
             name="items"
             type="com.example.marvel_application.model.local.entity.CharactersEntity" />
+
+        <variable
+            name="listener"
+            type="com.example.marvel_application.ui.home.HomeInteractionListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="160dp"
-        android:layout_height="240dp">
+        android:layout_height="240dp"
+        android:onClick="@{() -> listener.onClickItem(items.id)}"
+        >
 
         <ImageView
             android:id="@+id/image_characters"
