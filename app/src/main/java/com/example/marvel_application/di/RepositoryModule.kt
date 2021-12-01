@@ -1,6 +1,7 @@
 package com.example.marvel_application.di
 
 import com.example.marvel_application.domain.MarvelRepository
+import com.example.marvel_application.domain.MarvelRepositoryImp
 import com.example.marvel_application.model.remote.network.MarvelService
 import dagger.Module
 import dagger.Provides
@@ -14,6 +15,6 @@ object RepositoryModule {
 
     @Provides
     fun provideRepository(apiService: MarvelService): MarvelRepository {
-        return MarvelRepository(apiService)
+        return MarvelRepositoryImp(apiService)
     }
 }

@@ -11,26 +11,6 @@ import kotlinx.coroutines.flow.flow
 import retrofit2.Response
 import javax.inject.Inject
 
-class MarvelRepository @Inject constructor(
-    private val apiService: MarvelService
-) {
-
-    fun getMarvelCharacters(): Flow<State<MarvelResponse<Characters>?>> =
-        wrapWithFlow { apiService.getMarvelCharacters() }
-
-    private fun <T> wrapWithFlow(function: suspend () -> Response<T>): Flow<State<T?>> = flow {
-        emit(State.Loading)
-        try {
-            val result = function()
-            if (result.isSuccessful) {
-                emit(State.Success(result.body()))
-            } else {
-                emit(State.Error(result.message()))
-            }
-        } catch (e: Exception) {
-            emit(State.Error(e.message.toString()))
-        }
-    }.catch{ e ->
-       emit(State.Error("Response Error: ${e.message}"))
-    }
+interface MarvelRepository {
+    fun getMarvelCharacters(): Flow<State<MarvelResponse<Characters>?>>
 }
