@@ -7,7 +7,7 @@
 
         <variable
             name="items"
-            type="com.example.marvel_application.model.remote.response.characters.Characters" />
+            type="com.example.marvel_application.model.local.entity.CharactersEntity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
             android:id="@+id/image_characters"
             android:layout_width="150dp"
             android:layout_height="200dp"
-            app:ImageUrl="@{items.thumbnail}"
+            app:ImageUrl="@{items.imageUrl}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

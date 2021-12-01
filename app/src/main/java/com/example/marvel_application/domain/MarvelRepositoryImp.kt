@@ -1,9 +1,11 @@
 package com.example.marvel_application.domain
 
+import android.util.Log
+import com.example.marvel_application.model.local.dataBase.MarvelDatabase
+import com.example.marvel_application.model.local.entity.CharactersEntity
 import com.example.marvel_application.model.remote.State
 import com.example.marvel_application.model.remote.network.MarvelService
-import com.example.marvel_application.model.remote.response.baseResponse.MarvelResponse
-import com.example.marvel_application.model.remote.response.characters.Characters
+import com.example.marvel_application.util.Constant.TAG
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -11,11 +13,29 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class MarvelRepositoryImp @Inject constructor(
-private val apiService: MarvelService
-): MarvelRepository {
+    private val apiService: MarvelService,
+) : MarvelRepository {
 
-    override fun getMarvelCharacters(): Flow<State<MarvelResponse<Characters>?>> =
-        wrapWithFlow { apiService.getMarvelCharacters() }
+    private val charactersDao = MarvelDatabase.getInstance.marvelCharactersDao()
+
+    override fun getMarvelCharacters(): Flow<List<CharactersEntity>?> =
+        charactersDao.getCatchCharacters()
+
+    override suspend fun refreshCharacters() {
+        try {
+            val response = apiService.getMarvelCharacters()
+            val items = response.body()?.dataCharacters?.characters?.map {
+                CharactersEntity(
+                    id = it.id?.toLong(),
+                    name = it.name,
+                    imageUrl = "${it.thumbnail?.path}.${it.thumbnail?.extension}"
+                )
+            }
+            items?.let { charactersDao.addCharacters(it) }
+        } catch (e: Exception){
+            Log.i(TAG, "refreshCharacters: ${e.message}")
+        }
+    }
 
     private fun <T> wrapWithFlow(function: suspend () -> Response<T>): Flow<State<T?>> = flow {
         emit(State.Loading)
@@ -29,7 +49,7 @@ private val apiService: MarvelService
         } catch (e: Exception) {
             emit(State.Error(e.message.toString()))
         }
-    }.catch{ e ->
+    }.catch { e ->
         emit(State.Error("Response Error: ${e.message}"))
     }
 }

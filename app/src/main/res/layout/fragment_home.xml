@@ -15,31 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.home.HomeFragment">
-        <ImageView
-            android:id="@+id/image_characters"
-            android:layout_width="300dp"
-            android:layout_height="500dp"
-            android:layout_marginTop="200dp"
-            android:visibility="gone"
-            app:ImageUrl="@{viewModel.characters.toData().dataCharacters.characters.get(0).thumbnail}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textSize="33sp"
-            android:visibility="gone"
-            tools:text="hhhhhhhhhhhhhhhhhhhhhhhhhh"
-            android:text="@{viewModel.characters.toData().dataCharacters.characters.get(0).name}"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            app:items="@{viewModel.characters.toData().dataCharacters.characters}"
+            app:items="@{viewModel.characters}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
             tools:listitem="@layout/characteres_item" />

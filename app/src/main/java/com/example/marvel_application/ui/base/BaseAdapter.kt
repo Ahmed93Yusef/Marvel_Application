@@ -14,7 +14,7 @@ import com.example.marvel_application.util.OnClickListener
 
 abstract class BaseAdapter<T>(
     private var items: List<T>,
-    private val listener: OnClickListener?,
+    private val listener: OnClickListener? = null,
     private val layoutId: Int,
 ) : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>() {
 

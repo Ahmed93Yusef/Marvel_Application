@@ -51,12 +51,8 @@ fun <T> View.showWhenSearch(state: State<T>?) {
 }
 
 @BindingAdapter(value = ["app:ImageUrl"])
-fun ImageView.setImageUrl(urls: Thumbnail?) {
-    if (urls != null) {
-        val httpString = urls.path?.subSequence(0,4)
-        val httpPath = urls.path?.subSequence(4,urls.path.length)
-    val url = "${httpString}s${httpPath}.${urls.extension}"
-        Log.i(TAG, "setImageUrl: ${urls.path} -- $httpPath --- $httpPath")
+fun ImageView.setImageUrl(url: String?) {
+    if (url != null) {
         GlideApp.with(context)
             .load(url)
             .placeholder(R.drawable.progress_animation)
@@ -74,3 +70,18 @@ fun <T> RecyclerView.setRecyclerView(items: List<T>?) {
         (this.adapter as BaseAdapter<T>?)?.setItems(emptyList())
     }
 }
+//@BindingAdapter(value = ["app:ImageUrl"])
+//fun ImageView.setImageUrl(urls: Thumbnail?) {
+//    if (urls != null) {
+//        val httpString = urls.path?.subSequence(0,4)
+//        val httpPath = urls.path?.subSequence(4,urls.path.length)
+//        val url = "${httpString}s${httpPath}.${urls.extension}"
+//        Log.i(TAG, "setImageUrl: ${urls.path} -- $httpPath --- $httpPath")
+//        GlideApp.with(context)
+//            .load(url)
+//            .placeholder(R.drawable.progress_animation)
+//            .error(R.drawable.ic_baseline_error_outline_24)
+//            .timeout(10000)
+//            .into(this)
+//    }
+//}
