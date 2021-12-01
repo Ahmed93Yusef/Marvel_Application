@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.marvel_application.BR
 import com.example.marvel_application.util.DiffUtilAdapter
 
-
 abstract class BaseAdapter<T>(
     private var items: List<T>,
     private val listener: BaseInteractionListener? = null,
@@ -42,11 +41,20 @@ abstract class BaseAdapter<T>(
     override fun getItemViewType(position: Int) = position
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setItems(newItems: List<T> ) {
-        val diffUtilResult = DiffUtil.calculateDiff(DiffUtilAdapter(items, newItems))
+    fun setItems(newItems: List<T>) {
+        val diffUtilResult = DiffUtil.calculateDiff(DiffUtilAdapter(items, newItems)
+        { oldItemList, newItemList ->
+            areItemSame(
+                oldItemList,
+                newItemList
+            )
+
+        })
         items = newItems
         diffUtilResult.dispatchUpdatesTo(this)
     }
+
+    abstract fun areItemSame(oldItem: T?, newItem: T?): Boolean
 
     override fun getItemCount() = items.size
 

@@ -9,4 +9,6 @@ class HomeAdapter(item: List<CharactersEntity>, listener: HomeInteractionListene
         items = item,
         listener = listener,
         layoutId = R.layout.characteres_item
-    )
+    ) {
+    override fun areItemSame(oldItem: CharactersEntity?, newItem: CharactersEntity?) = true
+}
