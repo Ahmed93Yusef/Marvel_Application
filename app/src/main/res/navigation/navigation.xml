@@ -17,7 +17,7 @@
         android:name="com.example.marvel_application.ui.comic.ComicFragment"
         android:label="ComicFragment" >
         <argument
-            android:name="id"
+            android:name="characterId"
             app:argType="long" />
     </fragment>
 </navigation>
