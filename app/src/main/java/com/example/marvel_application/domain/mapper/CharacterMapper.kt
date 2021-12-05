@@ -1,6 +1,5 @@
 package com.example.marvel_application.domain.mapper
 
-import com.example.marvel_application.domain.models.Characters
 import com.example.marvel_application.model.local.entity.CharactersEntity
 import com.example.marvel_application.model.remote.response.characters.CharactersDto
 
