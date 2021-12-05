@@ -13,6 +13,9 @@ interface MarvelMapper {
     @Mapping(target = "imageExtension", source = "thumbnail.extension")
     fun convertCharacterDtoToEntity(charactersDto: CharactersDto): CharactersEntity
 
+
+    fun convertCharacterEntityToDomain(charactersEntity: CharactersEntity): Characters
+
     @Mapping(target = "imagePath", source = "thumbnail.path")
     @Mapping(target = "imageExtension", source = "thumbnail.extension")
     fun convertCharacterDtoToDomain(charactersDto: CharactersDto): Characters

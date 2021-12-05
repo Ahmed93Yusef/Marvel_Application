@@ -4,13 +4,10 @@ import android.util.Log
 import com.example.marvel_application.domain.mapper.MarvelMapper
 import com.example.marvel_application.domain.models.Characters
 import com.example.marvel_application.model.local.dao.MarvelCharactersDao
-import com.example.marvel_application.model.local.entity.CharactersEntity
 import com.example.marvel_application.model.remote.State
 import com.example.marvel_application.model.remote.network.MarvelService
 import com.example.marvel_application.util.Constant.TAG
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.*
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -20,8 +17,12 @@ class MarvelRepositoryImp @Inject constructor(
     private val charactersDao: MarvelCharactersDao
 ) : MarvelRepository {
 
-    override fun getMarvelCharacters(): Flow<List<CharactersEntity>?> =
-        charactersDao.getCatchCharacters()
+    override fun getMarvelCharacters(): Flow<List<Characters>> =
+         charactersDao.getCatchCharacters().map { characterEntity ->
+             characterEntity.map {
+                 mapper.convertCharacterEntityToDomain(it)
+             }
+         }
 
     override fun getMarvelCharactersById(characterId: Long): Flow<State<Characters>?> = flow {
         emit(State.Loading)

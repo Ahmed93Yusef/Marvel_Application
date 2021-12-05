@@ -7,7 +7,7 @@
 
         <variable
             name="items"
-            type="com.example.marvel_application.model.local.entity.CharactersEntity" />
+            type="com.example.marvel_application.domain.models.Characters" />
 
         <variable
             name="listener"
