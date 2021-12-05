@@ -3,7 +3,6 @@ package com.example.marvel_application.di
 import android.content.Context
 import com.example.marvel_application.domain.MarvelRepository
 import com.example.marvel_application.domain.MarvelRepositoryImp
-import com.example.marvel_application.domain.mapper.CharacterMapperById
 import com.example.marvel_application.domain.mapper.MarvelMapper
 import com.example.marvel_application.model.local.dao.MarvelCharactersDao
 import com.example.marvel_application.model.local.dataBase.MarvelDatabase
@@ -23,15 +22,9 @@ object RepositoryModule {
     fun provideRepository(
         apiService: MarvelService,
         mapper: MarvelMapper,
-        mapperById: CharacterMapperById,
         charactersDao: MarvelCharactersDao
     ): MarvelRepository {
-        return MarvelRepositoryImp(apiService, mapper,mapperById, charactersDao)
-    }
-
-    @Provides
-    fun provideMapperById(): CharacterMapperById {
-        return CharacterMapperById()
+        return MarvelRepositoryImp(apiService, mapper, charactersDao)
     }
 
     @Provides

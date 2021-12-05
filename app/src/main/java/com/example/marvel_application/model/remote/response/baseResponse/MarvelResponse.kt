@@ -5,17 +5,17 @@ import com.google.gson.annotations.SerializedName
 
 data class MarvelResponse<T>(
     @SerializedName("attributionHTML")
-    val attributionHTML: String?,
+    val attributionHTML: String? = null,
     @SerializedName("attributionText")
-    val attributionText: String?,
+    val attributionText: String? = null,
     @SerializedName("code")
-    val code: Int?,
+    val code: Int? = null,
     @SerializedName("copyright")
-    val copyright: String?,
+    val copyright: String? = null,
     @SerializedName("data")
-    val dataCharacters: DataMarvel<T>?,
+    val marvelResponse: DataMarvel<T>? = null,
     @SerializedName("etag")
-    val tag: String?,
+    val tag: String? = null,
     @SerializedName("status")
-    val status: String?
+    val status: String? = null
 )

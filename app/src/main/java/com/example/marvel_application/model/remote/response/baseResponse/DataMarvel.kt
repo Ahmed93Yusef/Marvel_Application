@@ -5,13 +5,13 @@ import com.google.gson.annotations.SerializedName
 
 data class DataMarvel<T>(
     @SerializedName("count")
-    val count: Int?,
+    val count: Int? = null,
     @SerializedName("limit")
-    val limit: Int?,
+    val limit: Int? = null,
     @SerializedName("offset")
-    val offset: Int?,
+    val offset: Int? = null,
     @SerializedName("results")
-    val characters: List<T>?,
+    val marvelData: List<T>? = null,
     @SerializedName("total")
-    val total: Int?
+    val total: Int? = null
 )

@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "CHARACTERS_TABLE")
 data class CharactersEntity(
-    @PrimaryKey val id: Long? = null,
+    @PrimaryKey var id: Long? = null,
     var name: String? = null,
     var description: String? = null,
     var modified: String? = null,

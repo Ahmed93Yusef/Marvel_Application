@@ -1,7 +1,6 @@
 package com.example.marvel_application.domain
 
 import android.util.Log
-import com.example.marvel_application.domain.mapper.CharacterMapperById
 import com.example.marvel_application.domain.mapper.MarvelMapper
 import com.example.marvel_application.domain.models.Characters
 import com.example.marvel_application.model.local.dao.MarvelCharactersDao
@@ -18,7 +17,6 @@ import javax.inject.Inject
 class MarvelRepositoryImp @Inject constructor(
     private val apiService: MarvelService,
     private val mapper: MarvelMapper,
-    private val mapperById: CharacterMapperById,
     private val charactersDao: MarvelCharactersDao
 ) : MarvelRepository {
 
@@ -31,7 +29,7 @@ class MarvelRepositoryImp @Inject constructor(
             Log.i(TAG, "MarvelRepositoryImp............: $characterId")
             val response = apiService.getMarvelCharactersById(characterId)
             if (response.isSuccessful){
-                val items = response.body()?.dataCharacters?.characters?.map { mapperById.map(it) }?.get(0)
+                val items = response.body()?.marvelResponse?.marvelData?.map { mapper.convertCharacterDtoToDomain(it) }?.get(0)
                 emit(State.Success(items))
             }else{
                 emit(State.Error(response.message()))
@@ -45,7 +43,7 @@ class MarvelRepositoryImp @Inject constructor(
     override suspend fun refreshCharacters() {
         try {
             val response = apiService.getMarvelCharacters()
-            val items = response.body()?.dataCharacters?.characters?.map { mapper.convertCharacterDtoToEntity(it) }
+            val items = response.body()?.marvelResponse?.marvelData?.map { mapper.convertCharacterDtoToEntity(it) }
             items?.let { charactersDao.addCharacters(it) }
         } catch (e: Exception){
             Log.i(TAG, "refreshCharacters: ${e.message}")
