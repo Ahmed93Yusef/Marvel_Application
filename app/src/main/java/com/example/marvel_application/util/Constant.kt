@@ -12,4 +12,5 @@ object Constant {
     const val ONE = 1
     const val MINUS_ONE = -1
     const val TWO = 2
+    const val DB_NAME = "MarvelCatchDatabase"
 }
