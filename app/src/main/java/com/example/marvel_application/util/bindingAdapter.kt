@@ -50,11 +50,11 @@ fun <T> View.showWhenSearch(state: State<T>?) {
     }
 }
 
-@BindingAdapter(value = ["app:ImageUrl"])
-fun ImageView.setImageUrl(url: String?) {
-    if (url != null) {
+@BindingAdapter(value = ["app:ImagePath", "app:ImageExtension"])
+fun ImageView.setImageUrl(path: String?, extension: String?) {
+    if (path != null) {
         GlideApp.with(context)
-            .load(url)
+            .load("$path.$extension")
             .placeholder(R.drawable.progress_animation)
             .error(R.drawable.ic_baseline_error_outline_24)
             .timeout(10000)

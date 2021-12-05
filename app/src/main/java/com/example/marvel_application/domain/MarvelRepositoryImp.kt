@@ -1,8 +1,8 @@
 package com.example.marvel_application.domain
 
 import android.util.Log
-import com.example.marvel_application.domain.mapper.CharacterMapper
 import com.example.marvel_application.domain.mapper.CharacterMapperById
+import com.example.marvel_application.domain.mapper.MarvelMapper
 import com.example.marvel_application.domain.models.Characters
 import com.example.marvel_application.model.local.dao.MarvelCharactersDao
 import com.example.marvel_application.model.local.entity.CharactersEntity
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 class MarvelRepositoryImp @Inject constructor(
     private val apiService: MarvelService,
-    private val mapper: CharacterMapper,
+    private val mapper: MarvelMapper,
     private val mapperById: CharacterMapperById,
     private val charactersDao: MarvelCharactersDao
 ) : MarvelRepository {
@@ -45,7 +45,7 @@ class MarvelRepositoryImp @Inject constructor(
     override suspend fun refreshCharacters() {
         try {
             val response = apiService.getMarvelCharacters()
-            val items = response.body()?.dataCharacters?.characters?.map { mapper.map(it) }
+            val items = response.body()?.dataCharacters?.characters?.map { mapper.convertCharacterDtoToEntity(it) }
             items?.let { charactersDao.addCharacters(it) }
         } catch (e: Exception){
             Log.i(TAG, "refreshCharacters: ${e.message}")

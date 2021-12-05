@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class SubList<T>(
     @SerializedName("available")
-    val available: Int?,
+    val available: Int? = null,
     @SerializedName("collectionURI")
-    val collectionURI: String?,
+    val collectionURI: String? = null,
     @SerializedName("items")
-    val items: List<T>?,
+    val items: List<T>? = null,
     @SerializedName("returned")
-    val returned: Int?
+    val returned: Int? = null
 )

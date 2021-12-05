@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Item(
     @SerializedName("name")
-    val name: String?,
+    val name: String? = null,
     @SerializedName("resourceURI")
-    val resourceURI: String?
+    val resourceURI: String? = null
 )
