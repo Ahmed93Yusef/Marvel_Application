@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.marvel_application.domain.MarvelRepository
+import com.example.marvel_application.domain.repository.MarvelRepository
 import com.example.marvel_application.ui.base.BaseViewModel
 import com.example.marvel_application.util.Constant.TAG
 import dagger.hilt.android.lifecycle.HiltViewModel

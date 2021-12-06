@@ -1,4 +1,4 @@
-package com.example.marvel_application.domain
+package com.example.marvel_application.domain.repository
 
 import com.example.marvel_application.domain.models.Characters
 import com.example.marvel_application.model.remote.State

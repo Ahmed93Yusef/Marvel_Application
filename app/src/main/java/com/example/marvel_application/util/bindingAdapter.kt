@@ -1,6 +1,5 @@
 package com.example.marvel_application.util
 
-import android.util.Log
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
@@ -9,9 +8,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvel_application.R
 import com.example.marvel_application.model.remote.State
-import com.example.marvel_application.model.remote.response.characters.Thumbnail
 import com.example.marvel_application.ui.base.BaseAdapter
-import com.example.marvel_application.util.Constant.TAG
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideApp
 
 @BindingAdapter(value = ["app:showWhenLoading"])

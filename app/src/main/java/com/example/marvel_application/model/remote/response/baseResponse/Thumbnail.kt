@@ -1,4 +1,4 @@
-package com.example.marvel_application.model.remote.response.characters
+package com.example.marvel_application.model.remote.response.baseResponse
 
 
 import com.google.gson.annotations.SerializedName

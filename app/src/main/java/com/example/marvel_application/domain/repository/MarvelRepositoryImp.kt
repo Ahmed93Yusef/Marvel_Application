@@ -1,4 +1,4 @@
-package com.example.marvel_application.domain
+package com.example.marvel_application.domain.repository
 
 import android.util.Log
 import com.example.marvel_application.domain.mapper.MarvelMapper

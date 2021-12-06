@@ -1,7 +1,7 @@
 package com.example.marvel_application.di
 
-import com.example.marvel_application.domain.MarvelRepository
-import com.example.marvel_application.domain.MarvelRepositoryImp
+import com.example.marvel_application.domain.repository.MarvelRepository
+import com.example.marvel_application.domain.repository.MarvelRepositoryImp
 import com.example.marvel_application.domain.mapper.MarvelMapper
 import com.example.marvel_application.model.local.dao.MarvelCharactersDao
 import com.example.marvel_application.model.remote.network.MarvelService
