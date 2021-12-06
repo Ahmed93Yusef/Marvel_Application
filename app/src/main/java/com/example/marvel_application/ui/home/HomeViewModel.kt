@@ -3,6 +3,7 @@ package com.example.marvel_application.ui.home
 import android.util.Log
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.marvel_application.domain.models.HomeItem
 import com.example.marvel_application.domain.repository.MarvelRepository
 import com.example.marvel_application.ui.base.BaseViewModel
 import com.example.marvel_application.util.Constant.TAG
@@ -15,11 +16,15 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     repository: MarvelRepository
 ) : BaseViewModel() {
-    val characters= repository.getMarvelCharacters().asLiveData(Dispatchers.IO)
+    private val characters= repository.getMarvelCharacters().asLiveData(Dispatchers.IO)
+    private val comics= repository.getMarvelComic().asLiveData(Dispatchers.IO)
+    private val events= repository.getMarvelEvent().asLiveData(Dispatchers.IO)
+
+    val homeItem = listOf(characters,comics,events)
 
     init {
         viewModelScope.launch {
-            repository.refreshCharacters()
+            repository.refreshItems()
             Log.i(TAG, "HomeViewModel------------characters------------: ${characters.value}")
         }
     }

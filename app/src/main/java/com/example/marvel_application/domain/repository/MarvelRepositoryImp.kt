@@ -3,6 +3,8 @@ package com.example.marvel_application.domain.repository
 import android.util.Log
 import com.example.marvel_application.domain.mapper.MarvelMapper
 import com.example.marvel_application.domain.models.Characters
+import com.example.marvel_application.domain.models.Comic
+import com.example.marvel_application.domain.models.Event
 import com.example.marvel_application.model.local.dao.MarvelCharactersDao
 import com.example.marvel_application.model.remote.State
 import com.example.marvel_application.model.remote.network.MarvelService
@@ -24,6 +26,21 @@ class MarvelRepositoryImp @Inject constructor(
              }
          }
 
+    override fun getMarvelComic(): Flow<List<Comic>> =
+        charactersDao.getCatchComic().map { comicEntity ->
+            comicEntity.map {
+                mapper.convertComicEntityToDomain(it)
+            }
+        }
+
+
+    override fun getMarvelEvent(): Flow<List<Event>> =
+        charactersDao.getCatchEvent().map { eventEntity ->
+            eventEntity.map {
+                mapper.convertEventEntityToDomain(it)
+            }
+        }
+
     override fun getMarvelCharactersById(characterId: Long): Flow<State<Characters>?> = flow {
         emit(State.Loading)
         try {
@@ -41,11 +58,19 @@ class MarvelRepositoryImp @Inject constructor(
     }
 
 
-    override suspend fun refreshCharacters() {
+    override suspend fun refreshItems() {
         try {
-            val response = apiService.getMarvelCharacters()
-            val items = response.body()?.marvelResponse?.marvelData?.map { mapper.convertCharacterDtoToEntity(it) }
-            items?.let { charactersDao.addCharacters(it) }
+            val responseCharacter = apiService.getMarvelCharacters()
+            val itemsCharacter = responseCharacter.body()?.marvelResponse?.marvelData?.map { mapper.convertCharacterDtoToEntity(it) }
+            itemsCharacter?.let { charactersDao.addCharacters(it) }
+
+            val responseComic = apiService.getMarvelComics()
+            val itemsComic = responseComic.body()?.marvelResponse?.marvelData?.map { mapper.convertComicDtoToEntity(it) }
+            itemsComic?.let { charactersDao.addComic(it) }
+
+            val responseEvent = apiService.getMarvelEvents()
+            val itemsEvent = responseEvent.body()?.marvelResponse?.marvelData?.map { mapper.convertEventDtoToEntity(it) }
+            itemsEvent?.let { charactersDao.addEvent(it) }
         } catch (e: Exception){
             Log.i(TAG, "refreshCharacters: ${e.message}")
         }

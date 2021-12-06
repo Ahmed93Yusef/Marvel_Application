@@ -7,7 +7,7 @@
 
         <variable
             name="items"
-            type="com.example.marvel_application.domain.models.Characters" />
+            type="com.example.marvel_application.domain.models.ParentCharacters" />
 
         <variable
             name="listener"
@@ -17,29 +17,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="160dp"
         android:layout_height="240dp"
-        android:onClick="@{() -> listener.onClickItem(items.id)}"
         >
 
-        <ImageView
-            android:id="@+id/image_characters"
-            android:layout_width="150dp"
-            android:layout_height="200dp"
-            app:ImagePath="@{items.imagePath}"
-            app:ImageExtension="@{items.imageExtension}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/text_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="22sp"
-            tools:text="Name"
-            android:text="@{items.name}"
-            app:layout_constraintStart_toStartOf="@id/image_characters"
-            app:layout_constraintEnd_toEndOf="@id/image_characters"
-            app:layout_constraintTop_toBottomOf="@id/image_characters"
-            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycle_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:items="@{items}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/child_characteres_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
