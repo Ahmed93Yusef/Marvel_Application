@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 class DiffUtilAdapter<T>(
     private val oldList: List<T>,
     private val newList: List<T>,
-    private val checkIfSame: (oldItemList: T?, newItemList: T?) -> Boolean
+    private val checkIfSame: (oldItemList: T, newItemList: T) -> Boolean
     ) :
     DiffUtil.Callback() {
 

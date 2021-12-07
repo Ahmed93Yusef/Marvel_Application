@@ -1,26 +1,31 @@
 package com.example.marvel_application.ui.home
 
-import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.marvel_application.domain.models.Characters
 import com.example.marvel_application.domain.repository.MarvelRepository
 import com.example.marvel_application.ui.base.BaseViewModel
-import com.example.marvel_application.util.Constant.TAG
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    repository: MarvelRepository
+    repository: MarvelRepository,
 ) : BaseViewModel() {
-    val characters= repository.getMarvelCharacters().asLiveData(Dispatchers.IO)
+    val characters = repository.getMarvelCharacters().asLiveData(Dispatchers.IO)
+
+    val homeItems = MutableLiveData<List<Characters>>()
 
     init {
         viewModelScope.launch {
             repository.refreshCharacters()
-            Log.i(TAG, "HomeViewModel------------characters------------: ${characters.value}")
+            repository.getMarvelCharacters().collect {
+                homeItems.postValue(it)
+            }
         }
     }
 }

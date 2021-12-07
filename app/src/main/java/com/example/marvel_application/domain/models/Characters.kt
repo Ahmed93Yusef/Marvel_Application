@@ -1,10 +1,10 @@
 package com.example.marvel_application.domain.models
 
 data class Characters(
-    var id: Long? = null,
-    var name: String? = null,
-    var description: String? = null,
-    var modified: String? = null,
-    var imagePath: String? = null,
-    var imageExtension: String? = null
+    var id: Long?,
+    var name: String?,
+    var description: String?,
+    var modified: String?,
+    var imagePath: String?,
+    var imageExtension: String?
 )

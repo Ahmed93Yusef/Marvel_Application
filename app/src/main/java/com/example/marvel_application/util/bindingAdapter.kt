@@ -7,8 +7,11 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvel_application.R
+import com.example.marvel_application.domain.models.HomeItems
+import com.example.marvel_application.domain.models.enumaration.HomeItemType
 import com.example.marvel_application.model.remote.State
 import com.example.marvel_application.ui.base.BaseAdapter
+import com.example.marvel_application.ui.home.adapter.HomeNestedAdapter
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideApp
 
 @BindingAdapter(value = ["app:showWhenLoading"])
@@ -67,3 +70,15 @@ fun <T> RecyclerView.setRecyclerView(items: List<T>?) {
         (this.adapter as BaseAdapter<T>?)?.setItems(emptyList())
     }
 }
+
+@BindingAdapter(value = ["app:itemsNested"])
+fun RecyclerView.setNestedRecyclerView(itemsNested: List<List<HomeItems>>?) {
+    if (itemsNested != null) {
+        for (i in itemsNested.indices) {
+            (this.adapter as HomeNestedAdapter?)?.setItemsAt(itemsNested[i], i)
+        }
+    } else {
+        (this.adapter as HomeNestedAdapter?)?.setItemsAt(emptyList(),0)
+    }
+}
+

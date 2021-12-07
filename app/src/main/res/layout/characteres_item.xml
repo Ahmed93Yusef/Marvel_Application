@@ -17,7 +17,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="160dp"
         android:layout_height="240dp"
-        android:onClick="@{() -> listener.onClickItem(items.id)}"
         >
 
         <ImageView
@@ -27,7 +26,8 @@
             app:ImagePath="@{items.imagePath}"
             app:ImageExtension="@{items.imageExtension}"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:src="@tools:sample/avatars"/>
 
         <TextView
             android:id="@+id/text_name"

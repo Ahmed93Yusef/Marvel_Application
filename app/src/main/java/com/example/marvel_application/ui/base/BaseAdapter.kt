@@ -11,14 +11,14 @@ import com.example.marvel_application.BR
 import com.example.marvel_application.util.DiffUtilAdapter
 
 abstract class BaseAdapter<T>(
-    private var items: List<T>,
+    private var _items: List<T>,
     private val listener: BaseInteractionListener? = null,
-    private val layoutId: Int,
 ) : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>() {
 
+    abstract var layoutId: Int
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder =
-        ItemViewHolder(
-            DataBindingUtil.inflate(
+        ItemViewHolder(DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
                 layoutId,
                 parent,
@@ -27,7 +27,7 @@ abstract class BaseAdapter<T>(
         )
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        val current = items[position]
+        val current = _items[position]
         when (holder) {
             is ItemViewHolder -> {
                 holder.binding.apply {
@@ -38,11 +38,9 @@ abstract class BaseAdapter<T>(
         }
     }
 
-    override fun getItemViewType(position: Int) = position
-
     @SuppressLint("NotifyDataSetChanged")
-    fun setItems(newItems: List<T>) {
-        val diffUtilResult = DiffUtil.calculateDiff(DiffUtilAdapter(items, newItems)
+    open fun setItems(newItems: List<T>) {
+        val diffUtilResult = DiffUtil.calculateDiff(DiffUtilAdapter(_items, newItems)
         { oldItemList, newItemList ->
             areItemSame(
                 oldItemList,
@@ -50,15 +48,17 @@ abstract class BaseAdapter<T>(
             )
 
         })
-        items = newItems
+        _items = newItems
         diffUtilResult.dispatchUpdatesTo(this)
     }
 
-    abstract fun areItemSame(oldItem: T?, newItem: T?): Boolean
+    abstract fun areItemSame(oldItem: T, newItem: T): Boolean
 
-    override fun getItemCount() = items.size
+    open val layoutIDs: List<Int>? = null
 
-    fun getItems() = items
+    override fun getItemCount(): Int = _items.size
+
+    val items get() = _items
 
     class ItemViewHolder(val binding: ViewDataBinding) : BaseViewHolder(binding)
 

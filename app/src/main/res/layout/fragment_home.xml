@@ -9,6 +9,10 @@
             name="viewModel"
             type="com.example.marvel_application.ui.home.HomeViewModel" />
 
+        <variable
+            name="adapter"
+            type="com.example.marvel_application.ui.home.adapter.HomeNestedAdapter" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,10 +25,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            app:items="@{viewModel.characters}"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
-            tools:listitem="@layout/characteres_item" />
+            app:adapter="@{adapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_home_recycler" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

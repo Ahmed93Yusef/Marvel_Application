@@ -7,6 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface MarvelService {
+
     @GET("/v1/public/characters")
     suspend fun getMarvelCharacters(): Response<MarvelResponse<CharactersDto>?>
 
