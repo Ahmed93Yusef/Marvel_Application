@@ -3,7 +3,7 @@ package com.example.marvel_application.di
 import com.example.marvel_application.domain.repository.MarvelRepository
 import com.example.marvel_application.domain.repository.MarvelRepositoryImp
 import com.example.marvel_application.domain.mapper.MarvelMapper
-import com.example.marvel_application.model.local.dao.MarvelCharactersDao
+import com.example.marvel_application.model.local.dao.MarvelDao
 import com.example.marvel_application.model.remote.network.MarvelService
 import dagger.Module
 import dagger.Provides
@@ -19,7 +19,7 @@ object RepositoryModule {
     fun provideRepository(
         apiService: MarvelService,
         mapper: MarvelMapper,
-        charactersDao: MarvelCharactersDao
+        charactersDao: MarvelDao
     ): MarvelRepository {
         return MarvelRepositoryImp(apiService, mapper, charactersDao)
     }

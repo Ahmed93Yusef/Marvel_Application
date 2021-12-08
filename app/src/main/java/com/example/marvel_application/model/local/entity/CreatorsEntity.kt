@@ -5,10 +5,10 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "CREATORS_TABLE")
 data class CreatorsEntity(
-    @PrimaryKey var id: Long? = null,
-    var name: String? = null,
-    var description: String? = null,
-    var modified: String? = null,
-    var imagePath: String? = null,
-    var imageExtension: String? = null
+    @PrimaryKey var id: Long?,
+    var name: String?,
+    var description: String?,
+    var modified: String?,
+    var imagePath: String?,
+    var imageExtension: String?
 )

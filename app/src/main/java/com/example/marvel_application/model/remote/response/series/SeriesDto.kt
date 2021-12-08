@@ -2,6 +2,7 @@ package com.example.marvel_application.model.remote.response.series
 
 
 import com.example.marvel_application.model.remote.response.baseResponse.*
+import com.example.marvel_application.model.remote.response.comic.ItemRole
 import com.google.gson.annotations.SerializedName
 
 data class SeriesDto(
@@ -10,19 +11,19 @@ data class SeriesDto(
     @SerializedName("comics")
     val comics: SubList<Item>? = null,
     @SerializedName("creators")
-    val creators: SubList<ItemType>? = null,
+    val creators: SubList<ItemRole>? = null,
     @SerializedName("description")
     val description: String? = null,
     @SerializedName("endYear")
     val endYear: Int? = null,
     @SerializedName("events")
-    val events: SubList<String>? = null,
+    val events: SubList<Item>? = null,
     @SerializedName("id")
     val id: Int? = null,
     @SerializedName("modified")
     val modified: String? = null,
     @SerializedName("next")
-    val next: String? = null,
+    val next: Item? = null,
     @SerializedName("previous")
     val previous: String? = null,
     @SerializedName("rating")

@@ -11,7 +11,7 @@
 
         <variable
             name="adapter"
-            type="com.example.marvel_application.ui.base.BaseAdapter" />
+            type="com.example.marvel_application.ui.home.adapter.CreatorsAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="CHARACTER"
+            android:text="CREATORS"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:adapter="@{adapter}"
-            app:items="@{viewModel.homeItems}"
+            app:items="@{viewModel.creatorsItems}"
             android:layout_marginHorizontal="4dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"

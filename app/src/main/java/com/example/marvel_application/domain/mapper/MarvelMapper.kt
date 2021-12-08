@@ -1,6 +1,6 @@
 package com.example.marvel_application.domain.mapper
 
-import com.example.marvel_application.domain.models.Characters
+import com.example.marvel_application.domain.models.*
 import com.example.marvel_application.model.local.entity.*
 import com.example.marvel_application.model.remote.response.characters.CharactersDto
 import com.example.marvel_application.model.remote.response.comic.ComicDto
@@ -29,26 +29,26 @@ interface MarvelMapper {
     @Mapping(target = "imageExtension", source = "thumbnail.extension")
     fun convertComicDtoToEntity(comicDto: ComicDto): ComicEntity
 
-    fun convertComicEntityToDomain(comicDto: ComicDto): ComicEntity
+    fun convertComicEntityToDomain(comicEntity: ComicEntity): Comic
 
     // Creators Convertor
     @Mapping(target = "imagePath", source = "thumbnail.path")
     @Mapping(target = "imageExtension", source = "thumbnail.extension")
     fun convertCreatorsDtoToEntity(creatorsDto: CreatorsDto): CreatorsEntity
 
-    fun convertCreatorsEntityToDomain(creatorsDto: CreatorsDto): CreatorsEntity
+    fun convertCreatorsEntityToDomain(creatorsEntity: CreatorsEntity): Creators
 
     // Event Convertor
     @Mapping(target = "imagePath", source = "thumbnail.path")
     @Mapping(target = "imageExtension", source = "thumbnail.extension")
     fun convertEventDtoToEntity(eventDto: EventDto): EventEntity
 
-    fun convertEventEntityToDomain(eventDto: EventDto): EventEntity
+    fun convertEventEntityToDomain(eventEntity: EventEntity): Event
 
     // Series Convertor
     @Mapping(target = "imagePath", source = "thumbnail.path")
     @Mapping(target = "imageExtension", source = "thumbnail.extension")
     fun convertSeriesDtoToEntity(seriesDto: SeriesDto): SeriesEntity
 
-    fun convertSeriesEntityToDomain(seriesDto: SeriesDto): SeriesEntity
+    fun convertSeriesEntityToDomain(seriesEntity: SeriesEntity): Series
 }

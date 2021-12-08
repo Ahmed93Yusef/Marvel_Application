@@ -27,7 +27,7 @@
             android:orientation="vertical"
             app:adapter="@{adapter}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_home_recycler" />
+            tools:listitem="@layout/item_home_character_recycler" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

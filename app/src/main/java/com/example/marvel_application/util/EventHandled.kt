@@ -1,6 +1,6 @@
 package com.example.marvel_application.util
 
-class Event<out T>(private val content: T) {
+class EventHandled<out T>(private val content: T) {
 
     private var hasBeenHandled = false
 

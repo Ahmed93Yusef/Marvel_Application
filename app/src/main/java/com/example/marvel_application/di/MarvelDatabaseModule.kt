@@ -2,7 +2,7 @@ package com.example.marvel_application.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.marvel_application.model.local.dao.MarvelCharactersDao
+import com.example.marvel_application.model.local.dao.MarvelDao
 import com.example.marvel_application.model.local.dataBase.MarvelDatabase
 import com.example.marvel_application.util.Constant
 import dagger.Module
@@ -28,7 +28,7 @@ object MarvelDatabaseModule {
 
     @Singleton
     @Provides
-    fun provideMarvelCharactersDao(marvelDatabase: MarvelDatabase): MarvelCharactersDao {
+    fun provideMarvelCharactersDao(marvelDatabase: MarvelDatabase): MarvelDao {
         return marvelDatabase.marvelCharactersDao()
     }
 }

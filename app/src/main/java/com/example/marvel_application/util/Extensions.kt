@@ -7,7 +7,7 @@ import androidx.navigation.NavDirections
 import java.math.BigInteger
 import java.security.MessageDigest
 
-fun LiveData<Event<NavDirections>>.observeEvent(owner: LifecycleOwner, navController: NavController){
+fun LiveData<EventHandled<NavDirections>>.observeEvent(owner: LifecycleOwner, navController: NavController){
     this.observe(owner, { event ->
         event?.getContentIfNotHandle()?.let { command ->
             navController.navigate(command)
