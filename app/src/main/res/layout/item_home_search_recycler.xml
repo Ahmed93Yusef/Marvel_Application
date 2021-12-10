@@ -11,7 +11,7 @@
 
         <variable
             name="adapter"
-            type="com.example.marvel_application.ui.home.adapter.SeriesAdapter" />
+            type="com.example.marvel_application.ui.home.adapter.ResentSearchAdapter" />
 
         <variable
             name="listener"
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="Series"
+            android:text="Resent Search"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -55,12 +55,11 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:adapter="@{adapter}"
-            app:items="@{viewModel.seriesItems}"
             android:layout_marginHorizontal="4dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/type_name"
-            tools:listitem="@layout/search_item" />
+            tools:listitem="@layout/characteres_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

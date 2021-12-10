@@ -135,4 +135,7 @@ dependencies {
     //progress bar
     implementation 'com.github.Marvel999:Android-Loading-Animation:1.0.0'
 
+    //bottom navigation
+    implementation 'io.ak1:bubbletabbar:1.0.8'
+
 }

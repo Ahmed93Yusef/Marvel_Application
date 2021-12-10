@@ -1,14 +1,16 @@
 package com.example.marvel_application.domain.repository
 
 import android.util.Log
+import com.example.marvel_application.domain.mapper.ConvertSearchDtoToEntity
 import com.example.marvel_application.domain.mapper.MarvelMapper
 import com.example.marvel_application.domain.models.*
 import com.example.marvel_application.model.local.dao.MarvelDao
-import com.example.marvel_application.model.local.entity.ComicEntity
 import com.example.marvel_application.model.remote.State
 import com.example.marvel_application.model.remote.network.MarvelService
 import com.example.marvel_application.util.Constant.TAG
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class MarvelRepositoryImp @Inject constructor(
@@ -17,6 +19,7 @@ class MarvelRepositoryImp @Inject constructor(
     private val marvelDao: MarvelDao,
 ) : MarvelRepository {
 
+    val searchMap = ConvertSearchDtoToEntity()
     override fun getMarvelCharacters(): Flow<List<Characters>> =
         marvelDao.getCatchCharacters().map { characterEntity ->
             characterEntity.map {
@@ -52,10 +55,16 @@ class MarvelRepositoryImp @Inject constructor(
             }
         }
 
+    override fun getMarvelResentSearch(): Flow<List<Search>> =
+        marvelDao.getCatchResentSearch().map { searchEntity ->
+            searchEntity.map {
+                mapper.convertResentSearchEntityToDomain(it)
+            }
+        }
+
     override fun getMarvelCharactersById(characterId: Long): Flow<State<Characters>?> = flow {
         emit(State.Loading)
         try {
-            Log.i(TAG, "MarvelRepositoryImp............: $characterId")
             val response = apiService.getMarvelCharactersById(characterId)
             if (response.isSuccessful) {
                 val items = response.body()?.marvelResponse?.marvelData?.map {
@@ -66,7 +75,75 @@ class MarvelRepositoryImp @Inject constructor(
                 emit(State.Error(response.message()))
             }
         } catch (e: Throwable) {
-            Log.i(TAG, "refreshCharacters: ${e.message}")
+            Log.i(TAG, "getMarvelCharactersById: ${e.message}")
+        }
+    }
+
+    override fun getMarvelComicById(comicId: Long): Flow<State<Comic>?> = flow {
+        emit(State.Loading)
+        try {
+            val response = apiService.getMarvelComicsById(comicId)
+            if (response.isSuccessful) {
+                val items = response.body()?.marvelResponse?.marvelData?.map {
+                    mapper.convertComicDtoToDomain(it)
+                }?.get(0)
+                emit(State.Success(items))
+            } else {
+                emit(State.Error(response.message()))
+            }
+        } catch (e: Throwable) {
+            Log.i(TAG, "getMarvelComicById: ${e.message}")
+        }
+    }
+
+    override fun getMarvelCreatorsById(creatorsId: Long): Flow<State<Creators>?> = flow {
+        emit(State.Loading)
+        try {
+            val response = apiService.getMarvelCreatorsById(creatorsId)
+            if (response.isSuccessful) {
+                val items = response.body()?.marvelResponse?.marvelData?.map {
+                    mapper.convertCreatorsDtoToDomain(it)
+                }?.get(0)
+                emit(State.Success(items))
+            } else {
+                emit(State.Error(response.message()))
+            }
+        } catch (e: Throwable) {
+            Log.i(TAG, "getMarvelCreatorsById: ${e.message}")
+        }
+    }
+
+    override fun getMarvelEventById(eventId: Long): Flow<State<Event>?> = flow {
+        emit(State.Loading)
+        try {
+            val response = apiService.getMarvelEventsById(eventId)
+            if (response.isSuccessful) {
+                val items = response.body()?.marvelResponse?.marvelData?.map {
+                    mapper.convertEventDtoToDomain(it)
+                }?.get(0)
+                emit(State.Success(items))
+            } else {
+                emit(State.Error(response.message()))
+            }
+        } catch (e: Throwable) {
+            Log.i(TAG, "getMarvelEventById: ${e.message}")
+        }
+    }
+
+    override fun getMarvelSeriesById(seriesId: Long): Flow<State<Series>?> = flow {
+        emit(State.Loading)
+        try {
+            val response = apiService.getMarvelSeriesById(seriesId)
+            if (response.isSuccessful) {
+                val items = response.body()?.marvelResponse?.marvelData?.map {
+                    mapper.convertSeriesDtoToDomain(it)
+                }?.get(0)
+                emit(State.Success(items))
+            } else {
+                emit(State.Error(response.message()))
+            }
+        } catch (e: Throwable) {
+            Log.i(TAG, "getMarvelSeriesById: ${e.message}")
         }
     }
 
@@ -131,6 +208,21 @@ class MarvelRepositoryImp @Inject constructor(
         }
     }
 
+    override suspend fun getSearchItem(name: String) {
+        try {
+            val responseCharacters = apiService.getMarvelCharactersSearch(name)
+            val itemsCharacters =
+                responseCharacters.body()?.marvelResponse?.marvelData?.map {
+                    searchMap.map(it)
+                }
+            itemsCharacters?.let { marvelDao.addResentSearch(it) }
+        } catch (e: Exception) {
+            Log.i(TAG, "getSearchItem: ${e.message}")
+        }
+    }
+
+}
+
 //    private fun <T> wrapWithFlow(function: suspend () -> Response<T>): Flow<State<T?>> = flow {
 //        emit(State.Loading)
 //        try {
@@ -146,4 +238,3 @@ class MarvelRepositoryImp @Inject constructor(
 //    }.catch { e ->
 //        emit(State.Error("Response Error: ${e.message}"))
 //    }
-}

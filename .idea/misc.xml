@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/kotlin/Marvel-Application/app/src/main/res/drawable/ic_baseline_error_outline_24.xml" value="0.225" />
+        <entry key="..\:/kotlin/Marvel-Application/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.22685185185185186" />
         <entry key="..\:/kotlin/Marvel-Application/app/src/main/res/layout/activity_home.xml" value="0.21666666666666667" />
         <entry key="..\:/kotlin/Marvel-Application/app/src/main/res/layout/characteres_item.xml" value="0.21666666666666667" />
         <entry key="..\:/kotlin/Marvel-Application/app/src/main/res/layout/child_characteres_item.xml" value="0.21666666666666667" />
@@ -12,13 +13,17 @@
         <entry key="..\:/kotlin/Marvel-Application/app/src/main/res/layout/event_item.xml" value="0.21666666666666667" />
         <entry key="..\:/kotlin/Marvel-Application/app/src/main/res/layout/fragment_comic.xml" value="0.1984375" />
         <entry key="..\:/kotlin/Marvel-Application/app/src/main/res/layout/fragment_home.xml" value="0.21666666666666667" />
+        <entry key="..\:/kotlin/Marvel-Application/app/src/main/res/layout/fragment_search.xml" value="0.21666666666666667" />
         <entry key="..\:/kotlin/Marvel-Application/app/src/main/res/layout/item_home_character_recycler.xml" value="0.21666666666666667" />
         <entry key="..\:/kotlin/Marvel-Application/app/src/main/res/layout/item_home_comic_recycler.xml" value="0.21666666666666667" />
         <entry key="..\:/kotlin/Marvel-Application/app/src/main/res/layout/item_home_creators_recycler.xml" value="0.21666666666666667" />
         <entry key="..\:/kotlin/Marvel-Application/app/src/main/res/layout/item_home_event_recycler.xml" value="0.21666666666666667" />
         <entry key="..\:/kotlin/Marvel-Application/app/src/main/res/layout/item_home_recycler.xml" value="0.1" />
+        <entry key="..\:/kotlin/Marvel-Application/app/src/main/res/layout/item_home_search_recycler.xml" value="0.21666666666666667" />
         <entry key="..\:/kotlin/Marvel-Application/app/src/main/res/layout/item_home_series_recycler.xml" value="0.21666666666666667" />
+        <entry key="..\:/kotlin/Marvel-Application/app/src/main/res/layout/search_item.xml" value="0.21666666666666667" />
         <entry key="..\:/kotlin/Marvel-Application/app/src/main/res/layout/series_item.xml" value="0.21666666666666667" />
+        <entry key="..\:/kotlin/Marvel-Application/app/src/main/res/menu/bottom_navigation.xml" value="0.21666666666666667" />
       </map>
     </option>
   </component>

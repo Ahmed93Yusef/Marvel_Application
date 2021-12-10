@@ -25,6 +25,9 @@ interface MarvelDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addSeries(items: List<SeriesEntity>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addResentSearch(items: List<SearchEntity>)
+
     @Query("Select * from CHARACTERS_TABLE")
     fun getCatchCharacters(): Flow<List<CharactersEntity>>
 
@@ -39,4 +42,7 @@ interface MarvelDao {
 
     @Query("Select * from SERIES_TABLE")
     fun getCatchSeries(): Flow<List<SeriesEntity>>
+
+    @Query("Select * from SEARCH_TABLE ORDER BY date DESC")
+    fun getCatchResentSearch(): Flow<List<SearchEntity>>
 }

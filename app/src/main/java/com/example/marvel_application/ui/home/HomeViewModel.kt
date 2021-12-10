@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.marvel_application.domain.models.*
 import com.example.marvel_application.domain.repository.MarvelRepository
 import com.example.marvel_application.ui.base.BaseViewModel
+import com.example.marvel_application.util.Constant
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,8 +15,13 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val repository: MarvelRepository,
-) : BaseViewModel(), HomeInteractionListener {
+) : BaseViewModel(){
 
+    val characters = Constant.CHARACTERS
+    val comic = Constant.COMIC
+    val creators = Constant.CREATORS
+    val events = Constant.EVENTS
+    val series = Constant.SERIES
     val charactersItems: LiveData<List<Characters>> =
         repository.getMarvelCharacters().asLiveData(Dispatchers.IO)
     val comicItems: LiveData<List<Comic>> = repository.getMarvelComic().asLiveData(Dispatchers.IO)
@@ -24,6 +30,7 @@ class HomeViewModel @Inject constructor(
     val eventItems: LiveData<List<Event>> = repository.getMarvelEvent().asLiveData(Dispatchers.IO)
     val seriesItems: LiveData<List<Series>> =
         repository.getMarvelSeries().asLiveData(Dispatchers.IO)
+//    val resentSearch: LiveData<List<Search>> = repository.getMarvelResentSearch().asLiveData(Dispatchers.IO)
 
     init {
         getCharacters()
@@ -61,9 +68,5 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             repository.refreshSeries()
         }
-    }
-
-    override fun onItemClicked(itemType: String) {
-
     }
 }

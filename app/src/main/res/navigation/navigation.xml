@@ -11,13 +11,24 @@
         <action
             android:id="@+id/action_homeFragment_to_comicFragment"
             app:destination="@id/comicFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/comicFragment"
         android:name="com.example.marvel_application.ui.comic.ComicFragment"
         android:label="ComicFragment" >
         <argument
-            android:name="characterId"
+            android:name="comicId"
             app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.marvel_application.ui.search.SearchFragment"
+        android:label="SearchFragment" >
+        <argument
+            android:name="itemType"
+            app:argType="string" />
     </fragment>
 </navigation>

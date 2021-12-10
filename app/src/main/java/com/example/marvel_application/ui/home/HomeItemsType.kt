@@ -7,5 +7,6 @@ enum class HomeItemsType (val id: Int, val index: Int) {
     COMIC(R.layout.item_home_comic_recycler, 1),
     CREATORS(R.layout.item_home_creators_recycler, 2),
     EVENT(R.layout.item_home_event_recycler, 3),
-    SERIES(R.layout.item_home_series_recycler, 4)
+    SERIES(R.layout.item_home_series_recycler, 4),
+//    SEARCH(R.layout.item_home_search_recycler, 5)
 }

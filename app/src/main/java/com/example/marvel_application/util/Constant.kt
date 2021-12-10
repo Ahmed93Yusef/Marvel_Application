@@ -13,4 +13,9 @@ object Constant {
     const val MINUS_ONE = -1
     const val TWO = 2
     const val DB_NAME = "MarvelCatchDatabase"
+    const val CHARACTERS = "characters"
+    const val COMIC = "comics"
+    const val CREATORS = "creators"
+    const val EVENTS = "events"
+    const val SERIES = "series"
 }

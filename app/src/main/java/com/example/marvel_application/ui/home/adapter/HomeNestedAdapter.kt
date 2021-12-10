@@ -47,6 +47,10 @@ class HomeNestedAdapter(
                 _items[position] as List<Series>,
                 _listener
             )
+//            HomeItemsType.SEARCH -> ResentSearchAdapter(
+//                _items[position] as List<Search>,
+//                _listener
+//            )
         }
         (holder as ItemViewHolder).binding.setVariable(BR.adapter, adapter)
     }

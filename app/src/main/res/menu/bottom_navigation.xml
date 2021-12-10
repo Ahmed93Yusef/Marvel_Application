@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:checked="true"
+        android:color="@color/white"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="home" />
+    <item
+        android:id="@+id/searchFragment"
+        android:color="@color/white"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="search" />
+    <item
+        android:id="@+id/comicFragment"
+        android:color="@color/white"
+        android:icon="@drawable/ic_baseline_table_chart_24"
+        android:title="character" />
+</menu>
